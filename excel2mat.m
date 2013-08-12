@@ -16,7 +16,7 @@ for j = 1 : length(months)
         for i = 1 : length(sensorIDs)
             sensorID = sensorIDs(i);
             [flowDataLanes, flowDataSum, speedDataLanes] = loadSensorData(sensorID, sensorDataFolder, month, date);
-            keyboard
+
             save(['sensorData_flow_mat\' num2str(sensorID) '_' num2str(month) '_' num2str(date)],...
                 'flowDataLanes', 'flowDataSum', 'speedDataLanes');
         end
