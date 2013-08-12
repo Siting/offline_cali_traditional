@@ -7,6 +7,10 @@ dates = [10; 11; 13; 14; 15];
 sensorDataFolder = 'sensorData_flow_version2';
 newSensorDataFolder = 'sensorData_flow_version3';
 
+deltaT = 2; % unit: second
+dataInterval = 0.5;  % unit: min
+c = dataInterval*60/deltaT;
+
 for i = 1 : length(months)
     month = months(i);
     for j = 1 : length(dates)
@@ -19,4 +23,6 @@ for i = 1 : length(months)
             flowDataLanes = flowDataLanes ./ c;
             save([num2str(newSensorDataFolder) '\' num2str(sensorID)...
                 '_' num2str(month) '_' num2str(date)], 'flowDataSum', 'flowDataLanes', 'speedDataLanes');
+        end
+    end
 end
