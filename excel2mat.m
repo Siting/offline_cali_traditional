@@ -3,7 +3,7 @@
 clear all
 clc
 
-sensorIDs = [400468; 402955; 402953; 400739; 402954; 400363; 402950; 400698];
+sensorIDs = [400468; 400739; 400363; 400698];
 months = 5;
 dates = [10; 11; 13; 14; 15];
 sensorDataFolder = 'sensorData';
@@ -15,8 +15,9 @@ for j = 1 : length(months)
         date = dates(k);
         for i = 1 : length(sensorIDs)
             sensorID = sensorIDs(i);
-            [flowDataLanes, flowDataSum] = loadSensorData(sensorID, sensorDataFolder, month, date);
-            save(['sensorData_flow_mat\' num2str(sensorID)], 'flowDataLanes', 'flowDataSum');
+            [flowDataLanes, flowDataSum, speedDataLanes] = loadSensorData(sensorID, sensorDataFolder, month, date);
+            save(['sensorData_flow_mat\' num2str(sensorID) '_' num2str(month) '_' num2str(date)],...
+                'flowDataLanes', 'flowDataSum', 'speedDataLanes');
         end
     end
 end
