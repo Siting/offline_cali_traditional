@@ -16,13 +16,13 @@ for i = 1 : length(sensorIDs)
         for k = 1 : length(months)
             month = months(k);
             load(['.\' sensorDataFolder1 '\' num2str(sensorID) '_' num2str(month) '_' num2str(date) '.mat']);
-            load(['.\' sensorDataFolder2 '\' num2str(sensorID) '.mat']);
+            load(['.\' sensorDataFolder2 '\' num2str(sensorID) '_vmax.mat']);
             flowInHour = flowDataLanes .* 2 .* 60;
             flowDataCollection = [flowDataCollection; flowInHour];
         end
     end
     dc = max(max(flowDataCollection)) / vmax;
-    keyboard
-    save([num2str(newFolder) '\' num2str(sensorID)], 'dc');
+
+    save([num2str(newFolder) '\' num2str(sensorID) '_dc'], 'dc');
 end
 

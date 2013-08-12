@@ -40,7 +40,7 @@ for i = 1 : length(sensorIDs)
     end
     vmax = lsqlin(densityCollection,flowCollection,[],[],0,0,0,[]);
 
-    save([num2str(newFolder) '\' num2str(sensorID)], 'vmax');
+    save([num2str(newFolder) '\' num2str(sensorID) '_vmax'], 'vmax');
 
 %     figure
 %     plot(densityCollection, flowCollection, '.');

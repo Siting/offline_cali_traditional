@@ -20,7 +20,7 @@ for i = 1 : length(sensorIDs)
             month = months(k);
             load(['.\' sensorDataFolder1 '\' num2str(sensorID) '_' num2str(month) '_' num2str(date) '.mat']);
             load(['.\' sensorDataFolder2 '\' num2str(sensorID) '_' num2str(month) '_' num2str(date) '.mat']);
-            load(['.\' sensorDataFolder3 '\' num2str(sensorID) '.mat']);
+            load(['.\' sensorDataFolder3 '\' num2str(sensorID) '_dc.mat']);
             
             for n = 1 : size(flowDataLanes,2)
                 col = densityLanes(:,n);
@@ -52,16 +52,16 @@ for i = 1 : length(sensorIDs)
         f_Bins(:,q) = max(col(col<=fLarge));
     end
     % compute capacity
-    load(['.\' sensorDataFolder4 '\' num2str(sensorID) '.mat']);
+    load(['.\' sensorDataFolder4 '\' num2str(sensorID) '_vmax.mat']);
     qmax = dc * vmax;
 
     % compute w
     w = lsqlin([meanDensity_bins' ones(size(meanDensity_bins,2),1)],f_Bins,[],[],[dc 1], qmax,[],[]);
     dmax = - w(2) / w(1);
 
-    plot(meanDensity_bins,f_Bins,'.');
-    hold on
-    plot((40:250), w(1).*(40:250)+ w(2),'r')
-    save([num2str(newFolder) '\' num2str(sensorID)], 'dmax');
+%     plot(meanDensity_bins,f_Bins,'.');
+%     hold on
+%     plot((40:250), w(1).*(40:250)+ w(2),'r')
+    save([num2str(newFolder) '\' num2str(sensorID) '_dmax'], 'dmax');
     
 end
