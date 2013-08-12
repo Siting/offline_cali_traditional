@@ -20,7 +20,7 @@ for i = 1 : length(months)
             if size(flowDataSum,1) == 5760
                 flowDataSum_30s = [];
                 flowDataLanes_30s = [];
-                keyboard
+
                 for row = 1 : 4 : (size(flowDataSum,1))
                     % add up data for each miniute
                     dataSum_30s = sum(flowDataSum(row:row+3));
