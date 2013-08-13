@@ -22,13 +22,13 @@ for i = 1 : length(sensorIDs)
             % compute density across all lanes (get sum)
             densityDataSum = sum(densityLanes,2);
             for j = 1 : size(densityDataSum,1)
-                if (isnan(densityDataSum(j)) || isinf(densityDataSum(j))) && j >= 4 && j <= size(densityDataSum,1)-3
+                if isnan(densityDataSum(j)) || isinf(densityDataSum(j)) && j >= 4 && j <= size(densityDataSum,1)-3
                     dataWindow = densityDataSum(j-3 : j+3);
                     densityDataSum(j) = mean(dataWindow(isnan(dataWindow)==0));
-                elseif (isnan(densityDataSum(j)) || isinf(densityDataSum(j))) && j < 4
+                elseif isnan(densityDataSum(j)) && j < 4
                     dataWindow = densityDataSum(j+1: j+4);
                     densityDataSum(j) = mean(dataWindow(isnan(dataWindow)==0));
-                elseif (isnan(densityDataSum(j)) || isinf(densityDataSum(j))) && j > size(densityDataSum,1)-3
+                elseif isnan(densityDataSum(j)) && j > size(densityDataSum,1)-3
                     dataWindow = densityDataSum(j-8: j-5);
                     densityDataSum(j) = mean(dataWindow(isnan(dataWindow)==0));
                 end

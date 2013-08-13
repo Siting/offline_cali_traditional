@@ -1,7 +1,7 @@
 clear all
 clc
 
-sensorIDs = [400468; 400739; 400363; 400698];
+sensorIDs = [402955; 402953; 402954; 402950];
 months = 5;
 dates = [11; 13; 14; 15; 16];
 sensorDataFolder1 = 'sensorData_flow_version2';

@@ -1,7 +1,7 @@
 clear all
 clc
 
-sensorIDs = [400468; 400739; 400363; 400698];
+sensorIDs = [402955; 402953; 402954; 402950];
 months = 5;
 dates = [11; 13; 14; 15; 16];
 sensorDataFolder1 = 'sensorData_flow_version2';
@@ -44,8 +44,9 @@ for i = 1 : length(sensorIDs)
     flowBins = reshape(fData, 10, floor(size(sortedPairCollection,1)/10));
 
     meanDensity_bins = mean(densityBins,1);
+    meanDensity_bins = meanDensity_bins(isinf(meanDensity_bins)==0);
     f_Bins = [];
-    for q = 1 : size(flowBins,2)
+    for q = 1 : size(meanDensity_bins,2)
         quantiles_flow_bins(:,q) = quantile(flowBins(:,q), [0.25, 0.5, 0.75]);
         fLarge = quantiles_flow_bins(3,q) + 1.5 * (quantiles_flow_bins(3,q) - quantiles_flow_bins(1,q));
         col = flowBins(:,q);
@@ -61,7 +62,7 @@ for i = 1 : length(sensorIDs)
 
 %     plot(meanDensity_bins,f_Bins,'.');
 %     hold on
-%     plot((40:250), w(1).*(40:250)+ w(2),'r')
+%     plot((20:250), w(1).*(20:250)+ w(2),'r')
     save([num2str(newFolder) '\' num2str(sensorID) '_dmax'], 'dmax');
     
 end
